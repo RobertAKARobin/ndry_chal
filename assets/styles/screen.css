@@ -1,9 +1,11 @@
 /* ---------------------------------------------------------------------
  Base
 --------------------------------------------------------------------- */
-body {
+html {
     font-family: "Helvetica", Arial, sans-serif;
     font-size: 13px;
+}
+body {
     background-color: #00527a;
 }
 
@@ -20,7 +22,7 @@ a {
 }
 
 .site-hd {
-    padding: 20px;
+    padding: 18px;
 }
 
 .site-nav {
@@ -28,7 +30,7 @@ a {
 }
 
 .site-bd {
-    padding: 18px;
+    padding: 20px;
     background-color: #ffffff;
 }
 

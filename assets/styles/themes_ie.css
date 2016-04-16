@@ -1,0 +1,9 @@
+.site-nav{
+    display:table;
+}
+.site-nav ul{
+    display:table-row;
+}
+.site-nav ul li{
+    display:table-cell;
+}
