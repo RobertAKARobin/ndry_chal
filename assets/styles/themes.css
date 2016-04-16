@@ -1,0 +1,78 @@
+.site-hd{
+    position:relative;
+    padding-left:0;
+    padding-right:0;
+}
+.site-hd .logo{
+    width:270px;
+    height:85px;
+}
+.site-hd nav{
+    position:absolute;
+    right:0;
+    bottom:0;
+    line-height:1rem;
+    padding-bottom:27px;
+}
+.site-hd nav a{
+    color:#eee;
+}
+
+.site-nav{
+    display:table;
+    width:100%;
+    position:relative;
+    top:3px;
+}
+.site-nav ul{
+    background-image:linear-gradient(#ffffff, #d0d0d0);
+    display:table-row;
+}
+.site-nav ul li{
+    display:table-cell;
+    vertical-align:bottom;
+}
+.site-nav ul li a{
+    display:block;
+    position:relative;
+    height:43px;
+    line-height:43px;
+    text-align:center;
+    text-transform:uppercase;
+    font-weight:bold;
+    color:rgba(87,89,92,0.8);
+    text-shadow:0px 1px 0px #fff;
+    transition:background-color 0.1s;
+    border-style:solid;
+    border-color:#c2c2c2;
+    border-width:1px 0;
+    letter-spacing:1px;
+    font-size:12px;
+    box-sizing:border-box;
+}
+.site-nav ul li a:not(.active):hover{
+    background-color:rgba(72,85,102,0.16);
+}
+.site-nav ul li a.active{
+    border-color:transparent;
+    box-shadow:0px 0px 1px 1px #c2c2c2;
+    background-color:#ffffff;
+    color:#282b2e;
+    border-top:3px solid #fff;
+    position:relative;
+    top:-3px;
+}
+
+.social{
+  background-image:url("../images/sprites.png");
+}
+
+
+.site-nav ul li a.active{
+    position:relative;
+    z-index:100;
+}
+.site-bd{
+    position:relative;
+    z-index:101;
+}
