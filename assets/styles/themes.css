@@ -68,44 +68,76 @@ body {
 
 .site-bd .carousel {
   width: 666px; }
-  .site-bd .carousel-info {
-    width: 274px;
-    font-size: 12px; }
-    .site-bd .carousel-info .newsletter {
-      height: 227px; }
-    .site-bd .carousel-info .testimonial {
-      height: 156px; }
-    .site-bd .carousel-info > * {
-      box-sizing: border-box;
-      background-color: #dbdbdb;
-      overflow: hidden;
-      padding: 0 10px;
-      line-height: 2em; }
+.site-bd .carousel-info {
+  width: 274px;
+  font-size: 12px; }
+  .site-bd .carousel-info .newsletter {
+    height: 227px; }
+  .site-bd .carousel-info .testimonial {
+    height: 156px; }
+  .site-bd .carousel-info > * {
+    position: relative;
+    box-sizing: border-box;
+    background-color: #dbdbdb;
+    overflow: hidden;
+    line-height: 2em; }
     .site-bd .carousel-info > * + * {
       margin-top: 20px; }
-    .site-bd .carousel-info > * > * {
-      margin-bottom: 10px; }
-    .site-bd .carousel-info h1 {
-      color: #282b2e;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: bold;
-      border-bottom: 1px solid rgba(40, 43, 46, 0.39);
-      padding-left: 0; }
-    .site-bd .carousel-info fieldset {
-      background-color: rgba(0, 0, 0, 0.1);
-      font-size: 12px;
-      padding: 8px; }
-      .site-bd .carousel-info fieldset p {
-        font-style: italic; }
-    .site-bd .carousel-info input[type=text] {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      height: 26px;
-      border: 0;
-      padding: 8px;
-      box-shadow: 0px 0px 5px 0px #aaa inset; }
+    .site-bd .carousel-info > * .head,
+    .site-bd .carousel-info > * .main {
+      margin: 10px; }
+      .site-bd .carousel-info > * .head > *,
+      .site-bd .carousel-info > * .main > * {
+        margin-bottom: 10px; }
+    .site-bd .carousel-info > * .foot {
+      border-top: 1px solid #969696;
+      text-align: center;
+      background-color: #cacaca; }
+      .site-bd .carousel-info > * .foot a {
+        color: #696969; }
+      .site-bd .carousel-info > * .foot .hList > * + *:before {
+        background-color: #000; }
+  .site-bd .carousel-info h1 {
+    color: #282b2e;
+    text-transform: uppercase;
+    line-height: 1em;
+    font-weight: bold;
+    border-bottom: 1px solid #969696;
+    padding-bottom: 10px; }
+  .site-bd .carousel-info fieldset {
+    background-color: #cacaca;
+    font-size: 12px;
+    padding: 5px 10px; }
+  .site-bd .carousel-info input[type=text] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    height: 26px;
+    border: 0;
+    padding: 8px;
+    font-size: 12px;
+    box-shadow: 0px 0px 5px 0px #aaa inset; }
+  .site-bd .carousel-info input[type=checkbox] {
+    margin: 0;
+    margin-right: 8px; }
+  .site-bd .carousel-info p {
+    font-style: italic;
+    color: #696969; }
+  .site-bd .carousel-info label {
+    display: block;
+    font-weight: bold;
+    line-height: 1.9em; }
+  .site-bd .carousel-info button {
+    display: inline-block;
+    border: 0;
+    background-color: #0084d9;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1em;
+    padding: 0.5em 1em; }
+  .site-bd .carousel-info .buttons {
+    text-align: right; }
 
 .social {
   background-image: url("../images/sprites.png"); }
