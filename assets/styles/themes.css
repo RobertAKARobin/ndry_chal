@@ -127,7 +127,8 @@ body {
     display: block;
     font-weight: bold;
     line-height: 1.9em; }
-  .site-bd .carousel-info button {
+  .site-bd .carousel-info button,
+  .site-bd .carousel-info .button {
     display: inline-block;
     border: 0;
     background-color: #0084d9;
@@ -136,6 +137,11 @@ body {
     font-size: 12px;
     line-height: 1em;
     padding: 0.5em 1em; }
+  .site-bd .carousel-info blockquote {
+    font-size: 14px;
+    line-height: 1.3em; }
+    .site-bd .carousel-info blockquote:before, .site-bd .carousel-info blockquote:after {
+      content: "\""; }
   .site-bd .carousel-info .buttons {
     text-align: right; }
 

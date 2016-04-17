@@ -170,7 +170,8 @@ body{
             font-weight:bold;
             line-height:1.9em;
         }
-        button{
+        button,
+        .button{
             display:inline-block;
             border:0;
             background-color:#0084d9;
@@ -179,6 +180,15 @@ body{
             font-size:12px;
             line-height:1em;
             padding:0.5em 1em;
+        }
+        blockquote{
+            font-size:14px;
+            line-height:1.3em;
+            
+            &:before,
+            &:after{
+                content:"\"";
+            }
         }
         .buttons{
             text-align:right;
