@@ -270,8 +270,8 @@
 }
 
 $icons: (
-    pencil:     -86px -26px,
-    envelope:   -86px -38px
+    pencil:     -129px  0px,
+    envelope:   -129px  -12px
 );
 .icon{
     &:before{
@@ -336,6 +336,58 @@ $social: (
     @each $site, $position in $social{
         & .#{$site}{
             background-position: $position 0px;
+        }
+    }
+}
+
+.carousel{
+    position:relative;
+    height:403px;
+    
+    .prev,
+    .next{
+        display:block;
+        position:absolute;
+        top:50%;
+        width:40px;
+        height:40px;
+        margin-top:-20px;
+        background-image:url(../images/graphics/sprites.png);
+        background-color:#0084d9;
+    }
+    .prev{
+        left:0;
+        background-position:-46px -26px;
+    }
+    .next{
+        right:0;
+        background-position:-86px -26px;
+    }
+    .nav{
+        display:block;
+        position:absolute;
+        bottom:0;
+        left:0;
+        width:100%;
+        text-align:center;
+        font-size:0;
+        
+        a{
+            display:inline-block;
+            
+            &:before{
+                content:"";
+                display:block;
+                width:9px;
+                height:9px;
+                margin:20px 5px;
+                border-radius:50%;
+                background-color:#fff;
+                box-shadow:0px 0px 1px 0px #333 inset;
+            }
+            &.active:before{
+                background-color:#0084d9;
+            }
         }
     }
 }
