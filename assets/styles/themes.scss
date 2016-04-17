@@ -53,7 +53,6 @@ body{
                 border-color:#c2c2c2;
                 border-width:1px 0;
                 letter-spacing:1px;
-                font-size:12px;
                 box-sizing:border-box;
                 
                 &:hover{
@@ -95,7 +94,6 @@ body{
         
     .carousel-info{
         width:274px;
-        font-size:12px;
         
         .newsletter{
             height:227px;
@@ -108,7 +106,6 @@ body{
             box-sizing:border-box;
             background-color:#dbdbdb;
             overflow:hidden;
-            line-height:2em;
             & + *{
                 margin-top:20px;
             }
@@ -120,7 +117,17 @@ body{
                     margin-bottom:10px;
                 }
             }
+            .head{
+                border-bottom:1px solid #969696;
+            }
+            .main{
+
+            }
             .foot{
+                position:absolute;
+                bottom:0;
+                left:0;
+                width:100%;
                 border-top:1px solid #969696;
                 text-align:center;
                 background-color:#cacaca;
@@ -128,7 +135,9 @@ body{
                 a{
                     color:#696969;
                 }
-                
+                .hList a{
+                    line-height:2em;
+                }
                 .hList > * + *:before{
                     background-color:#000;
                 }
@@ -137,38 +146,39 @@ body{
         h1{
             color:#282b2e;
             text-transform:uppercase;
-            line-height:1em;
             font-weight:bold;
-            border-bottom:1px solid #969696;
-            padding-bottom:10px;
         }
         fieldset{
             background-color:#cacaca;
-            font-size:12px;
-            padding:5px 10px;
+            padding:10px;
+            
+            input[type=checkbox]{
+                margin:0;
+                margin-right:10px;
+            }
+            label{
+                display:block;
+                font-size:0;
+                margin-top:10px;
+                span{
+                    font-size:1rem;
+                    font-weight:bold;
+                }
+            }
         }
         input[type=text]{
             display:block;
             width:100%;
             box-sizing:border-box;
+            font-size:1rem;
             height:26px;
             border:0;
-            padding:8px;
-            font-size:12px;
+            padding:10px;
             box-shadow:0px 0px 5px 0px #aaa inset;
-        }
-        input[type=checkbox]{
-            margin:0;
-            margin-right:8px;
         }
         p{
             font-style:italic;
             color:#696969;
-        }
-        label{
-            display:block;
-            font-weight:bold;
-            line-height:1.9em;
         }
         button,
         .button{
@@ -177,9 +187,8 @@ body{
             background-color:#0084d9;
             text-transform:uppercase;
             color:#fff;
-            font-size:12px;
-            line-height:1em;
-            padding:0.5em 1em;
+            line-height:2.5em;
+            padding:0 1em;
         }
         blockquote{
             font-size:14px;
@@ -199,6 +208,28 @@ body{
 
 .social{
     background-image:url("../images/sprites.png");
+}
+
+$icons: (
+    pencil:     -86px -26px,
+    envelope:   -86px -38px
+);
+.icon{
+    &:before{
+        content:"";
+        display:inline-block;
+        height:12px;
+        width:12px;
+        vertical-align:top;
+        margin-right:10px;
+        background-image:url("../images/sprites.png");
+        background-repeat:no-repeat;
+    }
+    @each $icon, $value in $icons{
+        &.i-#{$icon}:before{
+            background-position: $value;
+        }
+    }
 }
 
 
