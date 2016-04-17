@@ -1,6 +1,3 @@
-body {
-  width: 1160px; }
-
 .site-hd {
   position: relative;
   padding-left: 0;
@@ -209,6 +206,37 @@ body {
   background-position: -86px -26px; }
 .icon.i-envelope:before {
   background-position: -86px -38px; }
+
+.site-ft .legal {
+  color: #777; }
+  .site-ft .legal .hList > *:before {
+    background-color: #777; }
+.site-ft > * + * {
+  margin-top: 10px; }
+.site-ft .social {
+  float: right; }
+  .site-ft .social li {
+    display: inline-block; }
+  .site-ft .social li + li {
+    margin-left: 5px; }
+
+.social a {
+  display: block;
+  font-size: 0;
+  background-image: url(../images/graphics/sprites.png);
+  background-repeat: no-repeat;
+  width: 26px;
+  height: 26px; }
+.social .vimeo {
+  background-position: 0px 0px; }
+.social .flickr {
+  background-position: -26px 0px; }
+.social .facebook {
+  background-position: -52px 0px; }
+.social .rss {
+  background-position: -78px 0px; }
+.social .twitter {
+  background-position: -104px 0px; }
 
 .site-nav ul li a.active {
   position: relative;

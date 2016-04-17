@@ -1,7 +1,3 @@
-body{
-    width:1160px;
-}
-
 .site-hd{
     position:relative;
     padding-left:0;
@@ -291,6 +287,55 @@ $icons: (
     @each $icon, $value in $icons{
         &.i-#{$icon}:before{
             background-position: $value;
+        }
+    }
+}
+
+.site-ft{
+
+    .legal{
+        color:#777;
+        .hList > *:before{
+            background-color:#777;
+        }
+    }
+    
+    & > * + *{
+        margin-top: 10px;
+    }
+    
+    .social{
+        float:right;
+        
+        li{
+            display:inline-block;
+        }
+        li + li{
+            margin-left:5px;
+        }
+    }
+}
+
+$social: (
+    vimeo:      0px,
+    flickr:     -26px,
+    facebook:   -52px,
+    rss:        -78px,
+    twitter:    -104px
+);
+.social{
+    a{
+        display:block;
+        font-size:0;
+        background-image:url(../images/graphics/sprites.png);
+        background-repeat:no-repeat;
+        width:26px;
+        height:26px;
+    }
+    
+    @each $site, $position in $social{
+        & .#{$site}{
+            background-position: $position 0px;
         }
     }
 }
