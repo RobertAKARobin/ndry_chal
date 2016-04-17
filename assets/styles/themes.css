@@ -9,13 +9,13 @@ body {
   .site-hd .logo {
     width: 270px;
     height: 85px; }
-  .site-hd nav {
+  .site-hd .acct-nav {
     position: absolute;
     right: 0;
     bottom: 0;
     line-height: 1rem;
     padding-bottom: 23px; }
-    .site-hd nav a {
+    .site-hd .acct-nav a {
       color: #eee; }
 
 .site-nav {
@@ -56,100 +56,145 @@ body {
           position: relative;
           top: -3px; }
 
-.section.col {
+.site-bd > *.col {
   font-size: 0; }
-  .section.col > * {
+  .site-bd > *.col > * {
     display: inline-block;
     vertical-align: top;
     font-size: 1rem; }
-  .section.col > * + * {
+  .site-bd > *.col > * + * {
     margin-left: 20px; }
-
+.site-bd > * + * {
+  margin-top: 20px; }
 .site-bd .carousel {
   width: 666px; }
-.site-bd .carousel-info {
-  width: 274px; }
-  .site-bd .carousel-info .newsletter {
-    height: 227px; }
-  .site-bd .carousel-info .testimonial {
-    height: 156px; }
-  .site-bd .carousel-info > * {
+  .site-bd .carousel + .info {
+    width: 274px; }
+    .site-bd .carousel + .info .newsletter {
+      height: 227px; }
+    .site-bd .carousel + .info .testimonial {
+      height: 156px; }
+.site-bd .info > * {
+  position: relative;
+  box-sizing: border-box;
+  background-color: #dbdbdb;
+  overflow: hidden; }
+  .site-bd .info > * + * {
+    margin-top: 20px; }
+  .site-bd .info > * .head,
+  .site-bd .info > * .main {
+    margin: 10px; }
+    .site-bd .info > * .head > *,
+    .site-bd .info > * .main > * {
+      margin-bottom: 10px; }
+  .site-bd .info > * .head {
+    border-bottom: 1px solid #969696; }
+  .site-bd .info > * .foot {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #969696;
+    text-align: center;
+    background-color: #cacaca; }
+    .site-bd .info > * .foot a {
+      color: #696969; }
+    .site-bd .info > * .foot .hList a {
+      line-height: 2em; }
+    .site-bd .info > * .foot .hList > * + *:before {
+      background-color: #000; }
+.site-bd .info h1 {
+  color: #282b2e;
+  text-transform: uppercase;
+  font-weight: bold; }
+.site-bd .info .fieldset {
+  background-color: #cacaca;
+  padding: 10px; }
+  .site-bd .info .fieldset input[type=checkbox] {
+    margin: 0;
+    margin-right: 10px; }
+  .site-bd .info .fieldset label {
+    display: block;
+    font-size: 0;
+    margin-top: 10px; }
+    .site-bd .info .fieldset label span {
+      font-size: 1rem;
+      font-weight: bold; }
+.site-bd .info input[type=text] {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  height: 26px;
+  border: 0;
+  padding: 10px;
+  box-shadow: 0px 0px 5px 0px #aaa inset; }
+.site-bd .info p {
+  font-style: italic;
+  color: #696969; }
+.site-bd .info button,
+.site-bd .info .button {
+  display: inline-block;
+  border: 0;
+  background-color: #0084d9;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 2.5em;
+  padding: 0 1em; }
+.site-bd .info blockquote {
+  font-size: 14px;
+  line-height: 1.3em; }
+  .site-bd .info blockquote:before, .site-bd .info blockquote:after {
+    content: "\""; }
+.site-bd .info .buttons {
+  text-align: right; }
+.site-bd .thumbs .head {
+  display: block;
+  border: 0;
+  background-color: #0084d9;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 20px; }
+.site-bd .thumbs .head,
+.site-bd .thumbs a span {
+  line-height: 1em;
+  padding: 10px 15px;
+  box-sizing: border-box; }
+.site-bd .thumbs .body {
+  font-size: 0; }
+  .site-bd .thumbs .body .row {
+    margin-top: 20px; }
+    .site-bd .thumbs .body .row a + a {
+      margin-left: 20px; }
+  .site-bd .thumbs .body a {
+    display: inline-block;
     position: relative;
-    box-sizing: border-box;
-    background-color: #dbdbdb;
-    overflow: hidden; }
-    .site-bd .carousel-info > * + * {
-      margin-top: 20px; }
-    .site-bd .carousel-info > * .head,
-    .site-bd .carousel-info > * .main {
-      margin: 10px; }
-      .site-bd .carousel-info > * .head > *,
-      .site-bd .carousel-info > * .main > * {
-        margin-bottom: 10px; }
-    .site-bd .carousel-info > * .head {
-      border-bottom: 1px solid #969696; }
-    .site-bd .carousel-info > * .foot {
+    width: 225px;
+    height: 170px; }
+    .site-bd .thumbs .body a span {
+      display: block;
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      border-top: 1px solid #969696;
-      text-align: center;
-      background-color: #cacaca; }
-      .site-bd .carousel-info > * .foot a {
-        color: #696969; }
-      .site-bd .carousel-info > * .foot .hList a {
-        line-height: 2em; }
-      .site-bd .carousel-info > * .foot .hList > * + *:before {
-        background-color: #000; }
-  .site-bd .carousel-info h1 {
-    color: #282b2e;
-    text-transform: uppercase;
-    font-weight: bold; }
-  .site-bd .carousel-info fieldset {
-    background-color: #cacaca;
-    padding: 10px; }
-    .site-bd .carousel-info fieldset input[type=checkbox] {
-      margin: 0;
-      margin-right: 10px; }
-    .site-bd .carousel-info fieldset label {
+      color: #363636;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.7); }
+    .site-bd .thumbs .body a img {
+      position: absolute;
+      left: 0;
+      top: 0; }
+    .site-bd .thumbs .body a:before {
+      content: "";
       display: block;
-      font-size: 0;
-      margin-top: 10px; }
-      .site-bd .carousel-info fieldset label span {
-        font-size: 1rem;
-        font-weight: bold; }
-  .site-bd .carousel-info input[type=text] {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 1rem;
-    height: 26px;
-    border: 0;
-    padding: 10px;
-    box-shadow: 0px 0px 5px 0px #aaa inset; }
-  .site-bd .carousel-info p {
-    font-style: italic;
-    color: #696969; }
-  .site-bd .carousel-info button,
-  .site-bd .carousel-info .button {
-    display: inline-block;
-    border: 0;
-    background-color: #0084d9;
-    text-transform: uppercase;
-    color: #fff;
-    line-height: 2.5em;
-    padding: 0 1em; }
-  .site-bd .carousel-info blockquote {
-    font-size: 14px;
-    line-height: 1.3em; }
-    .site-bd .carousel-info blockquote:before, .site-bd .carousel-info blockquote:after {
-      content: "\""; }
-  .site-bd .carousel-info .buttons {
-    text-align: right; }
-
-.social {
-  background-image: url("../images/sprites.png"); }
+      position: relative;
+      z-index: 9999;
+      margin: 55px auto 0 auto;
+      background-image: url(../images/graphics/sprites.png);
+      background-position: 0 -26px;
+      width: 46px;
+      height: 46px; }
 
 .icon:before {
   content: "";
@@ -158,7 +203,7 @@ body {
   width: 12px;
   vertical-align: top;
   margin-right: 10px;
-  background-image: url("../images/sprites.png");
+  background-image: url("../images/graphics/sprites.png");
   background-repeat: no-repeat; }
 .icon.i-pencil:before {
   background-position: -86px -26px; }
