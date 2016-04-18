@@ -4,47 +4,21 @@
  * @author nerdery
  */
 
-
-/**
- * Timing variables used in this view
- * @property TIMING
- * @type {Object}
- * @final
- */
-var TIMING = {
-    INTERVAL: 4000
-};
-
-/**
- * An object of classes used in this view
- * @default null
- * @property CLASSES
- * @type {Object}
- * @final
- */
-var CLASSES = {
-    ACTIVE_SLIDE_CLASS: 'carousel-item_isActive',
-    INACTIVE_SLIDE_CLASS: 'carousel-item_isInactive'
-};
-
-/**
- * An object of selectors used in this view
- * @default null
- * @property SELECTORS
- * @type {Object}
- * @final
- */
-var SELECTORS = {
-    CAROUSEL_ID: '#js-carousel'
-};
-
 /**
  * Basic carousel view
  *
  * @class Carousel
  * @constructor
+ * @param {Object} SELECTORS - An object of selectors used in this view
+ * @see Carousel.SELECTORS_DEFAULT
  */
-var Carousel = function() {
+function Carousel(SELECTORS, TIMING) {
+    
+    /**
+    
+     */
+    this.selectors  = (SELECTORS || {});
+    this.timing     = (TIMING || 4000);
 
     /**
      * A reference to the carousel
@@ -65,6 +39,12 @@ var Carousel = function() {
      * @public
      */
     this.$slides = null;
+    
+    /**
+    
+     */
+    this.$nav_wrap = null;
+    this.$nav_items = null;
 
     /**
      * A reference to the current carousel slide
@@ -128,13 +108,39 @@ var Carousel = function() {
  * @chainable
  */
 Carousel.prototype.init = function() {
-    this.createChildren()
+    this.setSelectors()
+        .createChildren()
         .setupHandlers()
         .enable()
         .startSlideshow();
 
     return this;
 };
+
+/**
+
+ */
+Carousel.SELECTORS_DEFAULT = {
+    CAROUSEL:               '.carousel',
+    SLIDES_WRAP:            '.carousel-slides',
+    TRIGGER_NEXT:           '.carousel-next',
+    TRIGGER_PREV:           '.carousel-prev',
+    NAV_WRAP:               '.carousel-nav',
+    ACTIVE_SLIDE_CLASS:     'carousel-item_isActive',
+    INACTIVE_SLIDE_CLASS:   'carousel-item_isInactive',
+    ACTIVE_NAV_CLASS:       'carousel-nav-item-active'
+}
+
+Carousel.prototype.setSelectors = function(){
+    var self = this;
+    $.each(Carousel.SELECTORS_DEFAULT, function(selector){
+        if(!self.selectors[selector]){
+            self.selectors[selector] = Carousel.SELECTORS_DEFAULT[selector];
+        }
+    });
+    
+    return this;
+}
 
 /**
  * Binds the scope of any handler functions
@@ -160,18 +166,30 @@ Carousel.prototype.setupHandlers = function() {
  * @chainable
  */
 Carousel.prototype.createChildren = function() {
-    this.$carousel = $(SELECTORS.CAROUSEL_ID);
-    this.$slides = this.$carousel.children();
+    var self = this;
+    
+    this.$carousel = $(this.selectors.CAROUSEL);
+    this.$slides = this.$carousel.find(this.selectors.SLIDES_WRAP).children();
     this.$currentSlide = this.$slides.eq(this.currentIndex);
+    this.$nav_wrap = this.$carousel.find(this.selectors.NAV_WRAP);
 
     // Count the slides
     this.numSlides = this.$slides.length;
 
     // Make first slide active
-    this.$currentSlide.addClass(CLASSES.ACTIVE_SLIDE_CLASS);
+    this.$currentSlide.addClass(this.selectors.ACTIVE_SLIDE_CLASS);
 
     // Make all slides but the first inactive
-    this.$slides.not(this.$currentSlide).addClass(CLASSES.INACTIVE_SLIDE_CLASS);
+    this.$slides.not(this.$currentSlide).addClass(this.selectors.INACTIVE_SLIDE_CLASS);
+    
+    // Add navigation triggers
+    $.each(Array(this.numSlides), function(index){
+        var nav_item = $('<a></a>');
+        nav_item.on('click', $.proxy(self.goToSlide, self, index));
+        self.$nav_wrap.append(nav_item);
+    });
+    
+    this.$nav_items = this.$nav_wrap.children();
 
     return this;
 };
@@ -191,6 +209,12 @@ Carousel.prototype.enable = function() {
 
     this.$carousel.on('mouseenter', this.handleCarouselMouseEnter);
     this.$carousel.on('mouseleave', this.handleCarouselMouseLeave);
+    this.$carousel
+        .find(this.selectors.TRIGGER_NEXT)
+        .on('click', $.proxy(this.goToNextSlide, this));
+    this.$carousel
+        .find(this.selectors.TRIGGER_PREV)
+        .on('click', $.proxy(this.goToPreviousSlide, this));
 
     this.isEnabled = true;
 
@@ -230,7 +254,9 @@ Carousel.prototype.startSlideshow = function() {
 
     this.timer = setInterval(function() {
         self.goToNextSlide();
-    }, TIMING.INTERVAL);
+    }, this.timing);
+    
+    this.goToSlide(0);
 
     return this;
 };
@@ -290,14 +316,21 @@ Carousel.prototype.goToSlide = function(index) {
     }
 
     this.$currentSlide
-        .removeClass(CLASSES.ACTIVE_SLIDE_CLASS)
-        .addClass(CLASSES.INACTIVE_SLIDE_CLASS);
+        .removeClass(this.selectors.ACTIVE_SLIDE_CLASS)
+        .addClass(this.selectors.INACTIVE_SLIDE_CLASS);
+        
+    this.$nav_wrap
+        .find('.' + this.selectors.ACTIVE_NAV_CLASS)
+        .removeClass(this.selectors.ACTIVE_NAV_CLASS);
 
     this.$currentSlide = this.$slides.eq(index);
 
     this.$currentSlide
-        .removeClass(CLASSES.INACTIVE_SLIDE_CLASS)
-        .addClass(CLASSES.ACTIVE_SLIDE_CLASS);
+        .removeClass(this.selectors.INACTIVE_SLIDE_CLASS)
+        .addClass(this.selectors.ACTIVE_SLIDE_CLASS);
+
+    this.$nav_items.eq(index)
+        .addClass(this.selectors.ACTIVE_NAV_CLASS);
 
     this.currentIndex = index;
 
