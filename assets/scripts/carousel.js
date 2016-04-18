@@ -11,14 +11,29 @@
  * @constructor
  * @param {Object} SELECTORS - An object of selectors used in this view
  * @see Carousel.SELECTORS_DEFAULT
+ * @param {Number} TIMING - The number of miliseconds between each slide rotation
  */
 function Carousel(SELECTORS, TIMING) {
     
     /**
-    
+     * The CSS selectors that target different components of the carousel
+     *
+     * @default {}
+     * @property selectors
+     * @type {Object}
+     * @public
      */
-    this.selectors  = (SELECTORS || {});
-    this.timing     = (TIMING || 4000);
+    this.selectors = (SELECTORS || {});
+    
+    /**
+     * The number of miliseconds between each slide rotation
+     *
+     * @default 4000
+     * @property timing
+     * @type {Number}
+     * @public
+     */
+    this.timing = (TIMING || 4000);
 
     /**
      * A reference to the carousel
@@ -41,9 +56,23 @@ function Carousel(SELECTORS, TIMING) {
     this.$slides = null;
     
     /**
-    
+     * A reference to the container of the navigation triggers
+     *
+     * @default null
+     * @property $nav_wrap
+     * @type {jQuery}
+     * @public
      */
     this.$nav_wrap = null;
+    
+    /**
+     * A reference to the navigation triggers
+     *
+     * @default null
+     * @property $nav_items
+     * @type {jQuery}
+     * @public
+     */
     this.$nav_items = null;
 
     /**
@@ -101,7 +130,7 @@ function Carousel(SELECTORS, TIMING) {
 
 /**
  * Initializes the UI Component View
- * Runs createChildren, setupHandlers, enable, and startSlideshow
+ * Runs setSelectors, createChildren, setupHandlers, enable, and startSlideshow
  *
  * @method init
  * @public
@@ -118,7 +147,16 @@ Carousel.prototype.init = function() {
 };
 
 /**
-
+ * Default CSS selectors for the carousel's components
+ * @namespace SELECTORS_DEFAULT
+ * @prop {string} CAROUSEL - The wrapper for all components of this carousel instance
+ * @prop {string} SLIDES_WRAP - The wrapper for the slides of this carousel
+ * @prop {string} TRIGGER_NEXT - The element that on click makes the carousel rotate to the next slide
+ * @prop {string} TRIGGER_PREV - The element that on click makes the carousel rotate to the previous slide
+ * @prop {string} NAV_WRAP - The wrapper for the carousel's navigation triggers
+ * @prop {string} ACTIVE_SLIDE_CLASS - The class applied to active slides
+ * @prop {string} INACTIVE_SLIDE_CLASS - The class applied to inactive slides
+ * @prop {string} ACTIVE_NAV_CLASS - The class applied to active navigation triggers
  */
 Carousel.SELECTORS_DEFAULT = {
     CAROUSEL:               '.carousel',
@@ -131,6 +169,15 @@ Carousel.SELECTORS_DEFAULT = {
     ACTIVE_NAV_CLASS:       'carousel-nav-item-active'
 }
 
+/**
+ * Sets the CSS selectors for the components of the carousel
+ * If a selector is not provided, uses one of the default selectors provided
+ *
+ * @method setSelectors
+ * @see Carousel.SELECTORS_DEFAULT
+ * @public
+ * @chainable
+ */
 Carousel.prototype.setSelectors = function(){
     var self = this;
     $.each(Carousel.SELECTORS_DEFAULT, function(selector){
@@ -170,14 +217,10 @@ Carousel.prototype.createChildren = function() {
     
     this.$carousel = $(this.selectors.CAROUSEL);
     this.$slides = this.$carousel.find(this.selectors.SLIDES_WRAP).children();
-    this.$currentSlide = this.$slides.eq(this.currentIndex);
     this.$nav_wrap = this.$carousel.find(this.selectors.NAV_WRAP);
 
     // Count the slides
     this.numSlides = this.$slides.length;
-
-    // Make first slide active
-    this.$currentSlide.addClass(this.selectors.ACTIVE_SLIDE_CLASS);
 
     // Make all slides but the first inactive
     this.$slides.not(this.$currentSlide).addClass(this.selectors.INACTIVE_SLIDE_CLASS);
@@ -189,7 +232,11 @@ Carousel.prototype.createChildren = function() {
         self.$nav_wrap.append(nav_item);
     });
     
+    // Cache the individual navigation triggers
     this.$nav_items = this.$nav_wrap.children();
+    
+    // Go to first slide
+    this.goToSlide(this.currentIndex);
 
     return this;
 };
@@ -255,8 +302,6 @@ Carousel.prototype.startSlideshow = function() {
     this.timer = setInterval(function() {
         self.goToNextSlide();
     }, this.timing);
-    
-    this.goToSlide(0);
 
     return this;
 };
@@ -315,9 +360,11 @@ Carousel.prototype.goToSlide = function(index) {
         index = this.numSlides - 1;
     }
 
-    this.$currentSlide
-        .removeClass(this.selectors.ACTIVE_SLIDE_CLASS)
-        .addClass(this.selectors.INACTIVE_SLIDE_CLASS);
+    if(this.$currentSlide){
+        this.$currentSlide
+            .removeClass(this.selectors.ACTIVE_SLIDE_CLASS)
+            .addClass(this.selectors.INACTIVE_SLIDE_CLASS);
+    }
         
     this.$nav_wrap
         .find('.' + this.selectors.ACTIVE_NAV_CLASS)
@@ -360,5 +407,3 @@ Carousel.prototype.onCarouselMouseEnter = function(e) {
 Carousel.prototype.onCarouselMouseLeave = function(e) {
     this.startSlideshow();
 };
-
-new Carousel();
