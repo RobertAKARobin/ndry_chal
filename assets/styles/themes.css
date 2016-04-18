@@ -10,7 +10,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    line-height: 1rem;
+    line-height: 12px;
     padding-bottom: 23px; }
     .site-hd .acct-nav a {
       color: #eee; }
@@ -34,7 +34,7 @@
         text-align: center;
         text-transform: uppercase;
         font-weight: bold;
-        color: rgba(87, 89, 92, 0.8);
+        color: #888;
         text-shadow: 0px 1px 0px #fff;
         transition: background-color 0.1s;
         border-style: solid;
@@ -58,7 +58,7 @@
   .site-bd > *.col > * {
     display: inline-block;
     vertical-align: top;
-    font-size: 1rem; }
+    font-size: 12px; }
   .site-bd > *.col > * + * {
     margin-left: 20px; }
 .site-bd > * + * {
@@ -115,13 +115,13 @@
     font-size: 0;
     margin-top: 10px; }
     .site-bd .info .fieldset label span {
-      font-size: 1rem;
+      font-size: 12px;
       font-weight: bold; }
 .site-bd .info input[type=text] {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  font-size: 1rem;
+  font-size: 12px;
   height: 26px;
   border: 0;
   padding: 10px;
@@ -175,8 +175,9 @@
       left: 0;
       width: 100%;
       color: #363636;
-      font-size: 1rem;
+      font-size: 12px;
       font-weight: bold;
+      background-color: #ddd;
       background-color: rgba(255, 255, 255, 0.7); }
     .site-bd .thumbs .body a img {
       position: absolute;
